@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_projectEditForm
+
+block content
+  h2=title
+  //- pre= h.dump(project)
+
+  .project
+     +projectEditForm(project)
+

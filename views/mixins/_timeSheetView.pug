@@ -1,0 +1,79 @@
+mixin timeSheetView(projects)
+  //- pre= h.dump(projects)
+  script.
+   const projectData = () => {
+    document.getElementById('storytitle').value = document.getElementById("protitle").value;
+    if(document.getElementById('storytitle').value != ""){
+    var element = document.getElementById("storytitle");
+    var selected = element.selectedIndex;
+    //- console.log(element.value)
+    //- console.log(selected)
+    //- for (var i = element.length-1; i >= 0; i--) {
+    //-     if (i != selected) element[i].remove()
+    //- }
+    alert('datas')
+    } else {
+
+    alert('Stories not found');
+    }
+   };
+
+   const storyData = () => {
+    //- if (document.getElementById("storytitle").value != "") {
+        document.getElementById('tasktitle').value = document.getElementById("storytitle").value;
+        document.getElementById('tasktitle').parent = document.getElementById("storytitle").parent;
+        var parentVal = document.getElementById('storytitle').parent;
+        console.log(parentVal)
+        if(document.getElementById('tasktitle').value != ""){
+    var element = document.getElementById("tasktitle");
+    //- var selected = element.selectedIndex;
+    //- console.log(element.value)
+    //- console.log(selected)
+    //- for (var i = element.length-1; i >= 0; i--) {
+    //-     if (i != selected) element[i].remove()
+    //- }
+    alert('datas')
+    } else {
+    alert('Tasks not found');
+    }
+   };
+   
+  form.post(action='/timesheets'  method="POST")
+   table.table#tb
+    thead
+     tr
+      th Project Name
+      th Story Name
+      th Task Name
+      th Descritpion
+      th Time
+      th Submit
+    tbody#tbl
+     tr#tblw
+    tbody#post
+     tr
+      td
+       select(name="projecttitle" id="protitle" onchange= 'projectData()')
+        option(value="projects") Select Project
+        each project in projects
+         option(value=project._id) #{project.title}
+      td
+       select(name="storytitle"  id="storytitle" onchange='storyData()')
+        option(value="projects") Select Story
+        each project in projects
+         - var dataStory = project.stories;
+         each story in dataStory
+          option(value=story.projectId, parent=story._id) #{story.storytitle}
+      td
+       select(name="tasktitle"  id="tasktitle")
+        option(value="projects") Select Task
+        each project in projects
+         - var dataTask = project.tasks;
+         each task in dataTask
+          option(value=task.projectId,  parent=task.storyId) #{task.tasktitle}
+      td
+       input#desc(type="text" name="description" value="")
+      td
+       input#time(type="text" name="time" value="")
+      td
+       input.button(type="submit"  value="Submit")

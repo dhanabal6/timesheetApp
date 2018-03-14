@@ -1,0 +1,10 @@
+mixin taskForm(tasks= {})
+ form.form(action=`/${tasks.projectId}/${tasks._id}/tasks`  method="POST")
+   label(for="title") TaskTitle: 
+   input(type="text" name="tasktitle" value="")
+   textarea(name="taskdescription" placeholder="Type Task Description")
+   label(for="time") EstimationTime:
+   input(type="text" name="estimatetime" value="")
+   label(for="roll") Roll:
+   input(type="text" name="roll" value="")
+   input.button(type="submit" value="Add task")

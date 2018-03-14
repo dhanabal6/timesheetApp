@@ -1,0 +1,24 @@
+extends layout
+
+include mixins/_projectForm
+
+block content
+  h2=title
+  table.table
+      thead
+        th SNO
+        th ProjectTitle
+        th Descritpion
+        th
+        th 
+      each project, i in projects
+        tr
+          td #{i + 1}
+          td: a(href=`/${project._id}/stories`)= project.title
+          td= project.description
+          td: a(href=`/${project._id}/edit`) Edit
+          td: a(href=`/${project._id}/delete`) Delete
+  h2 Add Your Projects
+  .project
+     +projectForm()
+

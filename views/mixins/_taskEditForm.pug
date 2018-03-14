@@ -1,0 +1,10 @@
+mixin taskEditForm(task= {})
+ form.form(action=`/${task.projectId}/${task.storyId}/${task._id}`  method="POST")
+   label(for="title") TaskTitle: 
+   input(type="text" name="tasktitle" value=task.tasktitle)
+   textarea(name="taskdescription" placeholder="Type Task Description")= task.taskdescription
+   label(for="time") EstimationTime:
+   input(type="text" name="estimatetime" value=task.estimatetime)
+   label(for="roll") Roll:
+   input(type="text" name="roll" value=task.roll)
+   input.button(type="submit" value="Update task")

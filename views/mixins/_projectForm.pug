@@ -1,0 +1,6 @@
+mixin projectForm(project = {})
+ form.form(action='/projects'  method="POST")
+   label(for="title") Title: 
+   input(type="text" name="title" value=project.title)
+   textarea(name="description" placeholder="Type Project Description")= project.description
+   input.button(type="submit" value="Add Project")

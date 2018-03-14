@@ -1,0 +1,43 @@
+extends layout
+
+include mixins/_timeSheetView
+
+
+block content
+  h2=title
+  script.
+   var dateAdd = function(n){
+    var showMixin = document.getElementsByClassName('timesheet');
+    for (var i=0;i<showMixin.length;i+=1){
+     showMixin[i].style.display = 'block';
+     }
+     var dateForm = document.getElementsByClassName('dateform');
+     for (var i=0;i<dateForm.length;i+=1){
+     dateForm[i].style.display = 'none';
+     }
+    };
+
+   window.onload = function() {
+    var tt = document.getElementById('date');
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    var maxDate = year + '-' + month + '-' + day;
+    //- alert(maxDate);
+    tt.setAttribute('max', maxDate);
+     };
+  .postData
+    .dateForm
+      label(for="date") Select Your Date:
+      - var date = new Date().toLocaleDateString();
+      input#date(type="date" name="date" max="max" value=""  )
+      //- input#submit.post(type="submit"  value="Submit" ) 
+
+    .timesheet
+      +timeSheetView(projects)
+      //- +timeSheetForm(timesheetList)

@@ -1,0 +1,6 @@
+mixin storyEditForm(story = {})
+ form.form(action=`/${story.projectId}/${story._id}`  method="POST")
+   label(for="title") StoryTitle: 
+   input(type="text" name="storytitle" value=story.storytitle)
+   textarea(name="storydescription" placeholder="Type Story Description")= story.storydescription
+   input.button(type="submit" value="Update story")

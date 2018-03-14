@@ -1,0 +1,7 @@
+mixin dateForm(story = {})
+ pre= h.dump(story)
+  
+ form.dateform(action='/timesheets/'  method="GET")
+ label(for="date") Select Your Date:
+ input#date(type="date" max="max"  )
+ input#submit(type="submit"  value="Submit")

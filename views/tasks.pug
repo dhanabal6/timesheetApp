@@ -1,0 +1,32 @@
+extends layout
+
+include mixins/_taskForm
+
+block content
+  h2=title
+  //- pre= h.dump(taskList)
+  //- pre= h.dump(taskList.tasks)
+  if taskList.tasks
+  .stories
+    table.table
+      thead
+        th SNO
+        th TaskTitle
+        th Descritpion
+        th Estimate Time
+        th Roll
+        th
+        th
+      each task, i in taskList.tasks
+        tr
+          td #{i + 1}
+          td: a(href=`/task/${task.slug}`)= task.tasktitle
+          td= task.taskdescription
+          td= task.estimatetime
+          td= task.roll
+          td: a(href=`/${task.projectId}/${task.storyId}/${task._id}/edit`) Edit
+          td: a(href=`/${task.projectId}/${task.storyId}/${task._id}/delete`) Delete
+
+  .task
+     +taskForm(taskList)
+

@@ -1,0 +1,28 @@
+extends layout
+
+include mixins/_storyForm
+
+block content
+  h2=title
+  //- pre= h.dump(storyList)
+
+  if storyList.stories
+  .stories
+    table.table
+      thead
+        th SNO
+        th StoryTitle
+        th Descritpion
+        th
+        th
+      each story, i in storyList.stories
+        tr
+          td #{i + 1}
+          td: a(href=`/${story.projectId}/${story._id}/tasks`)= story.storytitle
+          td= story.storydescription
+          td: a(href=`/${story.projectId}/${story._id}/edit`) Edit
+          td: a(href=`/${story.projectId}/${story._id}/delete`) Delete
+  h2 Add Your Stories
+    .story
+     +storyForm(storyList)
+  
