@@ -8,7 +8,7 @@ const timeSheetController = require("../controllers/timeSheetController");
 
 const { catchErrors } = require("../handlers/errorHandlers");
 
-/*router.get("/projects", projectController.projectList);
+router.get("/projects", projectController.projectList);
 
 router.post("/projects", projectController.createProject);
 
@@ -36,7 +36,7 @@ router.get("/:projectId/:storyId/:taskId/edit", taskController.editTask);
 
 router.post("/:projectId/:storyId/:taskId", taskController.updateTask);
 
-router.get("/:projectId/:storyId/:taskId/delete",taskController.deleteTask);*/
+router.get("/:projectId/:storyId/:taskId/delete",taskController.deleteTask);
 
 router.get("/timesheets", timeSheetController.timeSheet);
 
